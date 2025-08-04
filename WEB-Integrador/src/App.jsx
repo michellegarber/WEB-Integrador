@@ -10,7 +10,7 @@ import MainMenu from './pages/MainMenu';
 import EventDetail from './pages/EventDetail';
 import Events from './pages/Events';
 import CreateEvent from './pages/CreateEvent';
-import EditEvent from './pages/EditEvent';
+import EditEvent from './pages/Editevent';
 import EventLocations from './pages/EventLocations';
 
 function ProtectedRoute({ children }) {
