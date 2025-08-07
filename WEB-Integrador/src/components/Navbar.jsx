@@ -16,14 +16,10 @@ const Navbar = () => {
     if (user) {
       const firstName = user.firstName || '';
       const lastName = user.lastName || '';
-      
-      // If we have a real name, use it
       if (firstName || lastName) {
         return `${firstName} ${lastName}`.trim();
       }
-      
-      // Otherwise fall back to username or login
-      return user.username || 'KevinSebaLee';
+      return user.username
     }
     return '';
   };
@@ -35,7 +31,7 @@ const Navbar = () => {
           <div className="navbar-logo">
             <Sparkles size={20} color="white" />
           </div>
-          <h1 className="navbar-title">EventManager</h1>
+          <h1 className="navbar-title">MyM Events</h1>
         </Link>
         
         {loading && (

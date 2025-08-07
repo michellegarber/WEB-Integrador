@@ -13,7 +13,7 @@ const CreateEvent = () => {
   const [formData, setFormData] = useState({
     name: '',
     description: '',
-    id_event_categoria: 1,  // Default category
+    id_event_categoria: 1,
     id_event_location: '',
     start_date: '',
     duration_in_minutes: 60,
@@ -52,7 +52,7 @@ const CreateEvent = () => {
     try {
       // Validate form
       if (!formData.name || !formData.description || !formData.id_event_location || !formData.start_date) {
-        throw new Error('Por favor completa todos los campos obligatorios');
+        throw new Error('Completa todos los campos ');
       }
 
       // Format date if needed
@@ -72,7 +72,7 @@ const CreateEvent = () => {
       navigate(`/events/${response.data.id}`);
     } catch (err) {
       console.error('Error creating event:', err);
-      setError(err.message || 'Error al crear el evento. Por favor intenta de nuevo.');
+      setError(err.message || 'Error al crear el evento. Intenta de nuevo.');
     } finally {
       setIsLoading(false);
     }
@@ -97,30 +97,15 @@ const CreateEvent = () => {
                 <Info size={16} />
                 Nombre del Evento *
               </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="Ej: Conferencia de Tecnología"
-                required
-                className="form-control"
-              />
-            </div>
+              <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} placeholder="Ej: Conferencia de Tecnología" required className="form-control"></input>
+ </div>
             
             <div className="form-group">
               <label htmlFor="id_event_location" className="flex items-center gap-2">
                 <MapPin size={16} />
                 Ubicación *
               </label>
-              <select
-                id="id_event_location"
-                name="id_event_location"
-                value={formData.id_event_location}
-                onChange={handleChange}
-                required
-                className="form-control"
+              <select id="id_event_location" name="id_event_location" value={formData.id_event_location} onChange={handleChange} required className="form-control"
               >
                 <option value="">Selecciona una ubicación</option>
                 {locations.map(location => (
@@ -137,15 +122,7 @@ const CreateEvent = () => {
               <Info size={16} />
               Descripción *
             </label>
-            <textarea
-              id="description"
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-              placeholder="Descripción detallada del evento"
-              required
-              rows={4}
-              className="form-control"
+            <textarea id="description" name="description" value={formData.description} onChange={handleChange} placeholder="Descripción detallada del evento" required rows={4} className="form-control"
             />
           </div>
           

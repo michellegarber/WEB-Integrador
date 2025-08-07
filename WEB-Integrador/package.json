@@ -11,11 +11,14 @@
     "start": "App.jsx"
   },
   "dependencies": {
+    "axios": "^1.11.0",
     "cors": "^2.8.5",
     "express": "^5.1.0",
+    "lucide-react": "^0.537.0",
     "pg": "^8.16.3",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^7.7.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.30.1",

@@ -23,16 +23,11 @@ const Login = () => {
     });
   };
 
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setLoading(true);
 
-    console.log('Login form submitted with:', credentials);
-
-    // Basic validation
     if (!credentials.username || !credentials.password) {
       setError('Por favor completa todos los campos');
       setLoading(false);
@@ -40,13 +35,10 @@ const Login = () => {
     }
 
     const result = await login(credentials);
-    console.log('Login result:', result);
     
     if (result.success) {
-      console.log('Login successful, navigating to dashboard');
       navigate('/dashboard');
     } else {
-      console.error('Login failed:', result.error);
       setError(result.error);
     }
     
@@ -57,17 +49,17 @@ const Login = () => {
     <div className="login-bg">
       <div className="main-content">
         <div className="login-card">
-          <Link to="/" className="back-btn">← Volver</Link>
-          {/* Header */}
+          <Link to="/" className="back-btn">← Regresar</Link>
+
           <div className="login-header text-center mb-8">
             <div className="login-header-icon">
               <LogIn size={32} color="white" />
             </div>
             <h2 className="login-header-title">
-              ¡Bienvenido de vuelta!
+              ¡Hola de nuevo!
             </h2>
             <p className="login-header-subtitle">
-              Inicia sesión para acceder a tu cuenta
+              Accede a tu cuenta
             </p>
           </div>
           
@@ -75,7 +67,7 @@ const Login = () => {
             <div className="form-group">
               <label htmlFor="username" className="flex items-center gap-2">
                 <Mail size={16} />
-                Email
+                Correo electrónico
               </label>
               <input
                 type="email"
@@ -92,7 +84,7 @@ const Login = () => {
             <div className="form-group">
               <label htmlFor="password" className="flex items-center gap-2">
                 <Lock size={16} />
-                Contraseña
+                Clave de acceso
               </label>
               <div style={{ position: 'relative' }}>
                 <input
@@ -131,12 +123,12 @@ const Login = () => {
                 {loading ? (
                   <div className="flex items-center gap-2">
                     <div className="loading-spinner"></div>
-                    Iniciando sesión...
+                    Cargando ...
                   </div>
                 ) : (
                   <div className="flex items-center gap-2">
                     <LogIn size={18} />
-                    Iniciar Sesión
+                    Entrar
                   </div>
                 )}
               </button>
@@ -145,13 +137,8 @@ const Login = () => {
           
           <div className="text-center mt-6">
             <p>
-              ¿No tienes cuenta?{' '}
-              <Link 
-                to="/register" 
-                className="login-register-link"
-              >
-                Regístrate aquí
-              </Link>
+              ¿Todavía no estás registrado?{' '}
+              <Link to="/register" className="login-register-link">Crea tu cuenta</Link>
             </p>
           </div>
         </div>

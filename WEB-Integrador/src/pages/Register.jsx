@@ -14,7 +14,6 @@ const Register = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [passwordStrength, setPasswordStrength] = useState(0);
   
   const { register } = useAuth();
   const navigate = useNavigate();
@@ -25,34 +24,6 @@ const Register = () => {
       ...userData,
       [name]: value
     });
-
-    // Check password strength
-    if (name === 'password') {
-      const strength = calculatePasswordStrength(value);
-      setPasswordStrength(strength);
-    }
-  };
-
-  const calculatePasswordStrength = (password) => {
-    let strength = 0;
-    if (password.length >= 6) strength += 1;
-    if (password.length >= 8) strength += 1;
-    if (/[A-Z]/.test(password)) strength += 1;
-    if (/[0-9]/.test(password)) strength += 1;
-    if (/[^A-Za-z0-9]/.test(password)) strength += 1;
-    return strength;
-  };
-
-  const getPasswordStrengthColor = () => {
-    if (passwordStrength <= 1) return '#ef4444';
-    if (passwordStrength <= 3) return '#f59e0b';
-    return '#10b981';
-  };
-
-  const getPasswordStrengthText = () => {
-    if (passwordStrength <= 1) return 'Débil';
-    if (passwordStrength <= 3) return 'Media';
-    return 'Fuerte';
   };
 
   const handleSubmit = async (e) => {
@@ -81,19 +52,19 @@ const Register = () => {
     <div className="register-bg">
       <div className="register-header">
         <div className="card fade-in">
-          <Link to="/" className="back-btn">← Volver</Link>
+          <Link to="/" className="back-btn">← Regresar</Link>
           <div className="text-center mb-8">
             <div className="header-icon">
               <UserPlus size={32} color="white" />
             </div>
-            <h2 className="header-title">¡Únete a nosotros!</h2>
-            <p className="header-subtitle">Crea tu cuenta y comienza a gestionar eventos</p>
+            <h2 className="header-title">¡Crea tu cuenta!</h2>
+            <p className="header-subtitle">Completa tus datos para comenzar</p>
           </div>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-2">
               <div className="form-group">
                 <label htmlFor="firstName" className="flex items-center gap-2">
-                  <User size={16} style={{verticalAlign:'middle', display:'inline-block', marginRight: '0.5rem'}} />
+                  <User size={16} />
                   Nombre
                 </label>
                 <input
@@ -109,7 +80,7 @@ const Register = () => {
               </div>
               <div className="form-group">
                 <label htmlFor="lastName" className="flex items-center gap-2">
-                  <User size={16} style={{verticalAlign:'middle', display:'inline-block', marginRight: '0.5rem'}} />
+                  <User size={16} />
                   Apellido
                 </label>
                 <input
@@ -124,10 +95,11 @@ const Register = () => {
                 />
               </div>
             </div>
+
             <div className="form-group">
               <label htmlFor="username" className="flex items-center gap-2">
-                <Mail size={16} style={{verticalAlign:'middle', display:'inline-block', marginRight: '0.5rem'}} />
-                Email
+                <Mail size={16} />
+                Correo electrónico
               </label>
               <input
                 type="email"
@@ -140,10 +112,11 @@ const Register = () => {
                 className="form-control"
               />
             </div>
+
             <div className="form-group">
               <label htmlFor="password" className="flex items-center gap-2">
-                <Lock size={16} style={{verticalAlign:'middle', display:'inline-block', marginRight: '0.5rem'}} />
-                Contraseña
+                <Lock size={16} />
+                Clave de acceso
               </label>
               <div style={{ position: 'relative' }}>
                 <input
@@ -165,34 +138,15 @@ const Register = () => {
                   {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </button>
               </div>
-              {userData.password && (
-                <div className="password-strength-container">
-                  <div className="password-strength-text">
-                    <span>Seguridad:</span>
-                    <span style={{ color: getPasswordStrengthColor(), fontWeight: '600' }}>
-                      {getPasswordStrengthText()}
-                    </span>
-                  </div>
-                  <div className="password-strength-bar">
-                    <div
-                      className="password-strength-bar-inner"
-                      style={{
-                        width: `${(passwordStrength / 5) * 100}%`,
-                        backgroundColor: getPasswordStrengthColor(),
-                        transition: 'all 0.3s ease',
-                        height: '100%'
-                      }}
-                    ></div>
-                  </div>
-                </div>
-              )}
             </div>
+
             {error && (
               <div className="error">
                 <AlertCircle size={16} />
                 {error}
               </div>
             )}
+
             <button
               type="submit"
               className="btn btn-success btn-lg w-full"

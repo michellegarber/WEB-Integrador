@@ -64,7 +64,7 @@ function AppContent() {
           <Route path="/" element={
             <AuthWrapper />
           } />
-          {/* Catch-all: if not logged in, redirect to main menu */}
+          
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </main>
@@ -81,8 +81,6 @@ function App() {
     </AuthProvider>
   );
 }
-
-// Wrapper to redirect authenticated users to dashboard on root
 function AuthWrapper() {
   const { user, loading } = useAuth();
   if (loading) return <div className="loading">Cargando...</div>;
