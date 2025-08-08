@@ -11,13 +11,11 @@ const Register = () => {
     firstName: '',
     lastName: ''
   });
-  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  
-  const { register } = useAuth();
+  const [error, setError] = useState('');
   const navigate = useNavigate();
-
+  const { register } = useAuth();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserData({
@@ -47,6 +45,7 @@ const Register = () => {
     
     setLoading(false);
   };
+  
 
   return (
     <div className="register-bg">

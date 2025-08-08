@@ -1,6 +1,7 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
 import { authAPI } from "../services/api";
 
+
 const AuthContext = createContext();
 
 export const useAuth = () => {
@@ -152,6 +153,7 @@ export const AuthProvider = ({ children }) => {
       return { success: true };
     } catch (error) {
       console.error("Register error:", error);
+      console.error("Error response data:", error.response?.data);
       return {
         success: false,
         error:

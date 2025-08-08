@@ -75,12 +75,12 @@ function AppContent() {
 function App() {
   return (
     <AuthProvider>
-      <Router>
-        <AppContent />
-      </Router>
+      <AppContent />
     </AuthProvider>
   );
 }
+
+
 function AuthWrapper() {
   const { user, loading } = useAuth();
   if (loading) return <div className="loading">Cargando...</div>;
